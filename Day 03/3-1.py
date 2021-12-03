@@ -16,18 +16,18 @@ def power_consumption(data):
     gamma = ''
     epsilon = ''
 
-    # Iterate through each line of the data
-    for line in data:
+    # A variable to hold where you are in the line
+    linepos = 0
 
-        # A variable to hold where you are in the line
-        linepos = 0
+    # While your position is less than the number of items in the line + 1
+    while linepos < 5:
 
-        # While your position is less than the number of items in the line + 1
-        while linepos < 5:
+        # Counters for how often you've seen each bit
+        count0 = 0
+        count1 = 0
 
-            # Counters for how often you've seen each bit
-            count0 = 0
-            count1 = 0
+        # Iterate through each line of the data
+        for line in data:
 
             # Increment the counters based on what bit you're seeing
             if line[linepos] == '0':
@@ -35,20 +35,20 @@ def power_consumption(data):
             elif line[linepos] == '1':
                 count1 += 1
 
-            # Append the most common bit to the correct list
-            if count0 > count1:
-                gamma += '0'
-                epsilon += '1'
-            elif count0 < count1:
-                gamma += '1'
-                epsilon += '0'
+        # Append the most common bit to the correct list
+        if count0 > count1:
+            gamma += '0'
+            epsilon += '1'
+        else:
+            gamma += '1'
+            epsilon += '0'
 
-            # Increment the line position so you move to the next one
-            linepos += 1
+        # Print statements for testing
+        print(f"Gamma is {gamma}.")
+        print(f"Epsilon is {epsilon}.")
 
-    # Print statements for testing
-    print(f"Gamma is {gamma}.")
-    print(f"Epsilon is {epsilon}.")
+        # Increment the line position so you move to the next one
+        linepos += 1
 
 
 power_consumption(lines)
