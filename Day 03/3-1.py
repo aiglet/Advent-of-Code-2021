@@ -10,7 +10,6 @@ def calc_freq(data):
 
 def power_consumption(data):
 
-
     gamma = ''
     epsilon = ''
 
@@ -37,12 +36,9 @@ def power_consumption(data):
 
             linepos += 1
 
-        print(f"Gamma is {gamma}.")
-        print(f"Epsilon is {epsilon}.")
 
-
-
-
+    print(f"Gamma is {gamma}.")
+    print(f"Epsilon is {epsilon}.")
 
 
 
