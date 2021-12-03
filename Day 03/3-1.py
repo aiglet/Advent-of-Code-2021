@@ -19,8 +19,8 @@ def power_consumption(data):
     # A variable to hold where you are in the line
     linepos = 0
 
-    # While your position is less than the number of items in the line + 1
-    while linepos < 5:
+    # While your position is less than the number of items in the line
+    while linepos < len(lines[0].strip()):
 
         # Counters for how often you've seen each bit
         count0 = 0
