@@ -1,8 +1,8 @@
 # Open the input file and read it into separate lines, stripping the newline character at the end
-with open("input.txt", "r") as f:
+with open("test.txt", "r") as f:
     lines = [x.strip() for x in f.readlines()]
 
-
+# PART ONE
 def power_consumption(data):
 
     # Set up strings to hold the "most common" bit for each position
@@ -42,8 +42,35 @@ def power_consumption(data):
     gamma_dec = int(gamma, 2)
     epsilon_dec = int(epsilon, 2)
 
-    answer = gamma_dec * epsilon_dec
+    power = gamma_dec * epsilon_dec
 
-    print(f"The answer is {answer}.")
+    return [gamma, epsilon]
+
+    # Commented this line out because we're now silently returning the binary values instead so I can use them in part 2
+#    print(f"The power consumption is {power}.")
+
 
 power_consumption(lines)
+
+# PART TWO
+def life_support(input_data, p_c_data):
+    oxy_candidates =[]
+    C02_candidates =[]
+    linepos = 0
+    oxypos = 0
+    C02pos = 0
+    gamma = p_c_data[0]
+    epsilon = p_c_data[1]
+
+    # Iterate through each line of the data and set up your initial candidates
+    for line in input_data:
+        if line[linepos] == gamma[linepos]:
+            oxy_candidates.append(line)
+        else:
+            C02_candidates.append(line)
+
+        print(oxy_candidates)
+        print(C02_candidates)
+
+
+life_support(lines, power_consumption(lines))
