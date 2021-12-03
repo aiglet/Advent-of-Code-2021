@@ -1,13 +1,6 @@
-# Open the input file and read it into separate lines
-with open("test.txt", "r") as f:
-    lines = f.readlines()
-
-
-def calc_freq(data):
-    freq = {}
-    for c in set(data):
-        freq[c] = data.count(c)
-    print(freq)
+# Open the input file and read it into separate lines, stripping the newline character at the end
+with open("input.txt", "r") as f:
+    lines = [x.strip() for x in f.readlines()]
 
 
 def power_consumption(data):
@@ -20,7 +13,7 @@ def power_consumption(data):
     linepos = 0
 
     # While your position is less than the number of items in the line
-    while linepos < len(lines[0].strip()):
+    while linepos < len(lines[0]):
 
         # Counters for how often you've seen each bit
         count0 = 0
@@ -43,12 +36,14 @@ def power_consumption(data):
             gamma += '1'
             epsilon += '0'
 
-        # Print statements for testing
-        print(f"Gamma is {gamma}.")
-        print(f"Epsilon is {epsilon}.")
-
         # Increment the line position so you move to the next one
         linepos += 1
 
+    gamma_dec = int(gamma, 2)
+    epsilon_dec = int(epsilon, 2)
+
+    answer = gamma_dec * epsilon_dec
+
+    print(f"The answer is {answer}.")
 
 power_consumption(lines)
