@@ -59,8 +59,8 @@ def life_support(input_data, p_c_data):
     linepos = 0
     oxypos = 0
     C02pos = 0
-    gamma = p_c_data[0]
-    epsilon = p_c_data[1]
+    gamma = list(p_c_data[0])
+    epsilon = list(p_c_data[1])
 
     # Iterate through each line of the data and set up your initial candidates
     for line in input_data:
@@ -69,8 +69,15 @@ def life_support(input_data, p_c_data):
         else:
             C02_candidates.append(line)
 
-        print(oxy_candidates)
-        print(C02_candidates)
+    # So what we need to do now is continue the comparison -- compare the second place of each element in oxy_candidates to the second place of each element in gamma, etc. and then the same with C02_candidates and epsilon.
+
+    for item in range(0, len(oxy_candidates)):
+        if oxy_candidates[item] == gamma[item]:
+            continue
+        else:
+            oxy_candidates.remove(oxy_candidates[item])
+            print(oxy_candidates)
+
 
 
 life_support(lines, power_consumption(lines))
