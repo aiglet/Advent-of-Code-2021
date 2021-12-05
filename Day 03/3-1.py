@@ -2,6 +2,7 @@
 with open("test.txt", "r") as f:
     lines = [x.strip() for x in f.readlines()]
 
+
 # PART ONE
 def power_consumption(data):
 
@@ -44,40 +45,7 @@ def power_consumption(data):
 
     power = gamma_dec * epsilon_dec
 
-    return [gamma, epsilon]
-
-    # Commented this line out because we're now silently returning the binary values instead so I can use them in part 2
-#    print(f"The power consumption is {power}.")
+    print(f"The power consumption is {power}.")
 
 
 power_consumption(lines)
-
-# PART TWO
-def life_support(input_data, p_c_data):
-    oxy_candidates =[]
-    C02_candidates =[]
-    linepos = 0
-    oxypos = 0
-    C02pos = 0
-    gamma = list(p_c_data[0])
-    epsilon = list(p_c_data[1])
-
-    # Iterate through each line of the data and set up your initial candidates
-    for line in input_data:
-        if line[linepos] == gamma[linepos]:
-            oxy_candidates.append(line)
-        else:
-            C02_candidates.append(line)
-
-    # So what we need to do now is continue the comparison -- compare the second place of each element in oxy_candidates to the second place of each element in gamma, etc. and then the same with C02_candidates and epsilon.
-
-    for item in range(0, len(oxy_candidates)):
-        if oxy_candidates[item] == gamma[item]:
-            continue
-        else:
-            oxy_candidates.remove(oxy_candidates[item])
-            print(oxy_candidates)
-
-
-
-life_support(lines, power_consumption(lines))
