@@ -24,4 +24,5 @@ def find_common(data, index):
 
 
 
+
 find_common(lines, 0)
