@@ -18,11 +18,36 @@ def find_common(data, index):
             count1 += 1
 
     if count0 > count1:
-        print(f"There are more 0s than 1s, the 0 count is {count0}, the 1 count is {count1}.")
+        return '0'
     else:
-        print(f"There are more 1s than 0s, the 0 count is {count0}, the 1 count is {count1}.")
+        return '1'
+
+def gasses(data):
+
+    oxy = []
+    C02 = []
+
+    index = 0
+
+    for item in data:
+        if item[index] == find_common(data, index):
+            oxy.append(item)
+        else:
+            C02.append(item)
+
+    while len(oxy) > 1:
+        index = 0
+
+        for item in oxy:
+
+            if item[index] == find_common(oxy, index):
+                index += 1
+            else:
+                oxy.remove(item)
+                index += 1
+
+    print(oxy)
 
 
 
-
-find_common(lines, 0)
+gasses(lines)
