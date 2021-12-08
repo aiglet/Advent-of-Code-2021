@@ -35,19 +35,33 @@ def gasses(data):
         else:
             C02.append(item)
 
+    oxy_index = 0
+
     while len(oxy) > 1:
-        index = 0
 
         for item in oxy:
 
-            if item[index] == find_common(oxy, index):
-                index += 1
+            if item[oxy_index] == find_common(oxy, oxy_index):
+                continue
             else:
                 oxy.remove(item)
-                index += 1
+                print(oxy)
 
-    print(oxy)
+        oxy_index += 1
 
+    C02_index = 0
 
+    while len(C02) > 1:
+
+        for item in C02:
+
+            if item[C02_index] == find_common(C02, C02_index):
+                C02.remove(item)
+
+        C02_index += 1
+
+    print(C02)
+
+# TODO: rewrite find_common into an oxy version (if there are equal 1s and 0s, 1 wins) and C02 version (if there are equal 1s and 0s, 0 wins). See if that fixes the C02 code, which is currently returning the wrong result.
 
 gasses(lines)
