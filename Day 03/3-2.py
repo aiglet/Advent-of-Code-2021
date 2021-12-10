@@ -59,7 +59,7 @@ def gasses(data):
         # For each item in the oxygen candidates
         for item in oxy:
 
-            # If the item has the common value at that index or there are equal numbers, keep it, otherwise discard it
+            # If the item has the common value at that index or there are equal numbers and the item has a 1 at that index, keep it, otherwise discard it
             if item[oxy_index] == common:
                 continue
             elif common == 'equal' and item[oxy_index] == 0:
@@ -93,14 +93,18 @@ def gasses(data):
         # Increment the index at each pass through the list
         C02_index += 1
 
+    # Convert things back out of a list into a string
     oxy = oxy[0]
     C02 = C02[0]
 
+    # Convert the binary numbers to decimal
     oxy_dec = int(oxy, 2)
     C02_dec = int(C02, 2)
 
+    # Perform the life support calculation
     life_support = oxy_dec * C02_dec
 
+    # Print the result
     print(f"The life support value is {life_support}.")
 
 
