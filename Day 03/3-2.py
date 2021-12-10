@@ -1,5 +1,5 @@
 # Open the input file and read it into separate lines, stripping the newline character at the end
-with open("input.txt", "r") as f:
+with open("test.txt", "r") as f:
     lines = [x.strip() for x in f.readlines()]
 
 
@@ -56,6 +56,7 @@ def gasses(data):
 
         # Find the item that's common at the current index
         common = find_common(oxy, oxy_index)
+
         # For each item in the oxygen candidates
         for item in oxy:
 
