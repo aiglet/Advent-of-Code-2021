@@ -1,5 +1,5 @@
 # Open the input file and read it into separate lines, stripping the newline character at the end
-with open("test.txt", "r") as f:
+with open("input.txt", "r") as f:
     lines = [x.strip() for x in f.readlines()]
 
 
@@ -39,7 +39,7 @@ def gasses(data):
     C02 = []
 
     # Split the list into oxygen and C02 potentials based on the full list
-    for item in data
+    for item in data:
         # Oxygen takes the items with the most common
         if item[0] == find_common(data, 0):
             oxy.append(item)
@@ -49,42 +49,43 @@ def gasses(data):
 
     # This is where the oxygen calculator starts.
     # A variable to hold what index we're working from
-    oxy_index = 0
+    oxy_index = 1
 
     # Loop through the oxygen candidates until there's only one left
     while len(oxy) > 1:
 
+        # Find the item that's common at the current index
+        common = find_common(oxy, oxy_index)
         # For each item in the oxygen candidates
         for item in oxy:
 
             # If the item has the common value at that index or there are equal numbers, keep it, otherwise discard it
-            if item[oxy_index] == find_common(oxy, oxy_index):
+            if item[oxy_index] == common:
                 continue
-            elif find_common(oxy, oxy_index) == 'equal' and item[oxy_index] == 0:
+            elif common == 'equal' and item[oxy_index] == 0:
                 oxy.remove(item)
-                print(oxy)
             else:
                 oxy.remove(item)
-                print(oxy)
 
         # After we've processed each item in the list, increment the index
         oxy_index += 1
 
     # This is where the C02 calculator starts
     # Set up a variable to hold the C02 index
-    C02_index = 0
+    C02_index = 1
 
     # Until there is only one C02 candidate
     while len(C02) > 1:
 
+        # Find the item that's common at the index
+        common = find_common(C02, C02_index)
         # Take each item in the candidate list in turn
         for item in C02:
 
             # If the item has the most common term at any given index, or the index counts are equal and the item has a 1 at that index, remove it from the list
-            if item[C02_index] == find_common(C02, C02_index):
-                print(C02)
+            if item[C02_index] == common:
                 C02.remove(item)
-            elif find_common(C02, C02_index) == 'equal' and item[C02_index] == 1:
+            elif common == 'equal' and item[C02_index] == 1:
                 C02.remove(item)
             else:
                 continue
@@ -92,6 +93,15 @@ def gasses(data):
         # Increment the index at each pass through the list
         C02_index += 1
 
-    print(C02)
+    oxy = oxy[0]
+    C02 = C02[0]
+
+    oxy_dec = int(oxy, 2)
+    C02_dec = int(C02, 2)
+
+    life_support = oxy_dec * C02_dec
+
+    print(f"The life support value is {life_support}.")
+
 
 gasses(lines)
